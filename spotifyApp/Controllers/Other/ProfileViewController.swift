@@ -6,6 +6,7 @@
 //
 //import SDWebImage
 import UIKit
+import SDWebImage
 
 class ProfileViewController: UIViewController {
     
@@ -66,7 +67,9 @@ class ProfileViewController: UIViewController {
         headerView.addSubview(imageView)
         imageView.center = headerView.center
         imageView.contentMode = .scaleAspectFill
-//        imageView.sd_setImage(with: url, completed: nil)
+        imageView.sd_setImage(with: url, completed: nil)
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = imageSize/2
         
         profileTableView.tableHeaderView = headerView
     }
