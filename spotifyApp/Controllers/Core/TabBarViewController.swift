@@ -42,7 +42,7 @@ class TabBarViewController: UITabBarController {
         libraryNavigation.navigationBar.prefersLargeTitles = true
         libraryNavigation.tabBarItem.title = "Library"
         libraryNavigation.tabBarItem.image = UIImage(systemName: "music.note.list")
-        libraryNavigation.navigationBar.tintColor = .labe
+        libraryNavigation.navigationBar.tintColor = .label
         //MARK: Set ViewController
         let viewController: [UIViewController] = [homeNavigation, searchNavigation, libraryNavigation]
         setViewControllers(viewController, animated: false)
