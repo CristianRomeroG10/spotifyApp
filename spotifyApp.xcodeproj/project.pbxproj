@@ -42,6 +42,8 @@
 		10D4B7432BF2AEAF000C3269 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10D4B73E2BF2AEAF000C3269 /* Assets.xcassets */; };
 		10D4B7442BF2AEAF000C3269 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D4B73F2BF2AEAF000C3269 /* Extensions.swift */; };
 		10D4B7452BF2AEAF000C3269 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D4B7402BF2AEAF000C3269 /* SceneDelegate.swift */; };
+		10E4BF472C443DC9007ABDCC /* FeaturedPlaylistCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E4BF462C443DC9007ABDCC /* FeaturedPlaylistCellViewModel.swift */; };
+		10E4BF492C443E6E007ABDCC /* RecommendedTrackCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E4BF482C443E6E007ABDCC /* RecommendedTrackCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +83,8 @@
 		10D4B73E2BF2AEAF000C3269 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		10D4B73F2BF2AEAF000C3269 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		10D4B7402BF2AEAF000C3269 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		10E4BF462C443DC9007ABDCC /* FeaturedPlaylistCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedPlaylistCellViewModel.swift; sourceTree = "<group>"; };
+		10E4BF482C443E6E007ABDCC /* RecommendedTrackCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedTrackCellViewModel.swift; sourceTree = "<group>"; };
 		4AF7F39CB9358569869DC235 /* Pods-spotifyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-spotifyApp.release.xcconfig"; path = "Target Support Files/Pods-spotifyApp/Pods-spotifyApp.release.xcconfig"; sourceTree = "<group>"; };
 		5231A8E0EBF62D753D4D7EE8 /* Pods_spotifyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_spotifyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A55438FC0002EF6DF86FC744 /* Pods-spotifyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-spotifyApp.debug.xcconfig"; path = "Target Support Files/Pods-spotifyApp/Pods-spotifyApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -206,6 +210,8 @@
 			isa = PBXGroup;
 			children = (
 				109E0EDC2C40A5C600312FEB /* NewReleasesCellViewModel.swift */,
+				10E4BF462C443DC9007ABDCC /* FeaturedPlaylistCellViewModel.swift */,
+				10E4BF482C443E6E007ABDCC /* RecommendedTrackCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -365,7 +371,9 @@
 				10D4B7422BF2AEAF000C3269 /* AppDelegate.swift in Sources */,
 				10D4B71B2BF2AE31000C3269 /* SearchViewController.swift in Sources */,
 				109E0EDD2C40A5C600312FEB /* NewReleasesCellViewModel.swift in Sources */,
+				10E4BF492C443E6E007ABDCC /* RecommendedTrackCellViewModel.swift in Sources */,
 				10D4B7332BF2AE4C000C3269 /* AudioTrack.swift in Sources */,
+				10E4BF472C443DC9007ABDCC /* FeaturedPlaylistCellViewModel.swift in Sources */,
 				109E0ECC2C3E2F3700312FEB /* APIImage.swift in Sources */,
 				10D4B71A2BF2AE31000C3269 /* LibraryViewController.swift in Sources */,
 				10D4B72A2BF2AE40000C3269 /* HapticsManger.swift in Sources */,

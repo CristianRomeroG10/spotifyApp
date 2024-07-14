@@ -9,8 +9,8 @@ import UIKit
 
 enum BrowseSectionType {
     case newReleases(viewModel: [NewReleasesCellViewModel]) //1
-   case featuredPlaylists(viewModel: [NewReleasesCellViewModel]) //2
-   case recommendedTracks(viewModel: [NewReleasesCellViewModel]) //3
+   case featuredPlaylists(viewModel: [FeaturedPlaylistCellViewModel]) //2
+   case recommendedTracks(viewModel: [RecommendedTrackCellViewModel]) //3
 }
 
 class HomeViewController: UIViewController {
@@ -142,8 +142,18 @@ class HomeViewController: UIViewController {
                 numberOfTracks: $0.total_tracks,
                 artistName: $0.artists.first?.name ?? "-")
         })))
-        sections.append(.featuredPlaylists(viewModel: []))
-        sections.append(.recommendedTracks(viewModel: []))
+        sections.append(.featuredPlaylists(viewModel: playlists.compactMap({
+            return FeaturedPlaylistCellViewModel(
+                name: $0.name,
+                artWorkURL: URL(string: $0.images.first?.url ?? ""),
+                creatorName: $0.owner.display_name)
+        })))
+        sections.append(.recommendedTracks(viewModel: tracks.compactMap({
+            return RecommendedTrackCellViewModel(
+                name: $0.name,
+                artistName: $0.artists.first?.name ?? "-",
+                artworkURL: URL(string: $0.album.images.first?.url ?? ""))
+        })))
         collectionView.reloadData()
     }
     
@@ -188,7 +198,8 @@ extension HomeViewController: UICollectionViewDataSource{
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeaturedPlaylistCollectionViewCell.identifier, for: indexPath) as? FeaturedPlaylistCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.backgroundColor = .blue
+            let viewModel = viewModels[indexPath.row]
+            cell.configure(with: viewModel)
             return cell
         case .recommendedTracks(let viewModels):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommendedTrackCollectionViewCell.identifier, for: indexPath) as? RecommendedTrackCollectionViewCell else {
