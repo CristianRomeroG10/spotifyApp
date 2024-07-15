@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0418B82CB2D9C1236BC69872 /* Pods_spotifyApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5231A8E0EBF62D753D4D7EE8 /* Pods_spotifyApp.framework */; };
+		101E840B2C45DAA300964D15 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101E840A2C45DAA300964D15 /* AlbumViewController.swift */; };
 		109E0ECA2C3DE70200312FEB /* NewReleasesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109E0EC92C3DE70200312FEB /* NewReleasesResponse.swift */; };
 		109E0ECC2C3E2F3700312FEB /* APIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109E0ECB2C3E2F3700312FEB /* APIImage.swift */; };
 		109E0ECE2C3F3B1A00312FEB /* FeaturedPlaylistsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109E0ECD2C3F3B1900312FEB /* FeaturedPlaylistsResponse.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		101E840A2C45DAA300964D15 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		109E0EC92C3DE70200312FEB /* NewReleasesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReleasesResponse.swift; sourceTree = "<group>"; };
 		109E0ECB2C3E2F3700312FEB /* APIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIImage.swift; sourceTree = "<group>"; };
 		109E0ECD2C3F3B1900312FEB /* FeaturedPlaylistsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedPlaylistsResponse.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				10D4B7142BF2AE31000C3269 /* SearchResultViewController.swift */,
 				10D4B7152BF2AE31000C3269 /* SettingsViewController.swift */,
 				10D4B7162BF2AE31000C3269 /* WelcomeViewController.swift */,
+				101E840A2C45DAA300964D15 /* AlbumViewController.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				109E0EDD2C40A5C600312FEB /* NewReleasesCellViewModel.swift in Sources */,
 				10E4BF492C443E6E007ABDCC /* RecommendedTrackCellViewModel.swift in Sources */,
 				10D4B7332BF2AE4C000C3269 /* AudioTrack.swift in Sources */,
+				101E840B2C45DAA300964D15 /* AlbumViewController.swift in Sources */,
 				10E4BF472C443DC9007ABDCC /* FeaturedPlaylistCellViewModel.swift in Sources */,
 				109E0ECC2C3E2F3700312FEB /* APIImage.swift in Sources */,
 				10D4B71A2BF2AE31000C3269 /* LibraryViewController.swift in Sources */,

@@ -15,6 +15,10 @@ enum BrowseSectionType {
 
 class HomeViewController: UIViewController {
     
+    private var newAlbums: [Album] = []
+    private var playlists: [Playlist] = []
+    private var tracks: [AudioTrack] = []
+    
     private var collectionView: UICollectionView =  UICollectionView(
         frame: .zero,
         collectionViewLayout: UICollectionViewCompositionalLayout { sectionIndex, _ -> NSCollectionLayoutSection? in
@@ -134,6 +138,9 @@ class HomeViewController: UIViewController {
     }
     
     private func ConfigureModels(newAlbums: [Album], playlists: [Playlist], tracks: [AudioTrack]){
+        self.newAlbums = newAlbums
+        self.playlists = playlists
+        self.tracks = tracks
         //Configure models
         sections.append(.newReleases(viewModel: newAlbums.compactMap({
             return NewReleasesCellViewModel(
@@ -311,5 +318,20 @@ extension HomeViewController: UICollectionViewDataSource{
 }
 
 extension HomeViewController: UICollectionViewDelegate{
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let section = sections[indexPath.section]
+        switch section {
+        case .featuredPlaylists:
+            break
+        case .newReleases:
+            let album = newAlbums[indexPath.row]
+            let albumViewController = AlbumViewController(album: album)
+            albumViewController.title = album.name
+            albumViewController.navigationItem.largeTitleDisplayMode = .never
+            navigationController?.pushViewController(albumViewController, animated: true)
+            break
+        case .recommendedTracks:
+            break
+        }
+    }
 }
