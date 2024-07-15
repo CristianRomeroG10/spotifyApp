@@ -137,8 +137,8 @@
 				10D4B7272BF2AE40000C3269 /* Managers */,
 				10D4B7382BF2AE81000C3269 /* ViewModels */,
 				10D4B7312BF2AE4C000C3269 /* Models */,
-				10D4B7182BF2AE31000C3269 /* Controllers */,
 				10D4B73B2BF2AE91000C3269 /* Views */,
+				10D4B7182BF2AE31000C3269 /* Controllers */,
 				10D4B7052BF2AD9F000C3269 /* Info.plist */,
 			);
 			path = spotifyApp;

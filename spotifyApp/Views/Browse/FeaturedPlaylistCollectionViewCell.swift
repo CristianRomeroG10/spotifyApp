@@ -13,7 +13,7 @@ class FeaturedPlaylistCollectionViewCell: UICollectionViewCell {
         let imageview = UIImageView()
         imageview.image = UIImage(systemName: "photo")
         imageview.layer.masksToBounds = true
-        imageview.layer.cornerRadius = 8
+        imageview.layer.cornerRadius = 4
         imageview.contentMode = .scaleAspectFill
         return imageview
     }()
@@ -36,6 +36,7 @@ class FeaturedPlaylistCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+//        contentView.backgroundColor = .secondarySystemBackground
         contentView.addSubview(playlistCoverImageView)
         contentView.addSubview(playlistNameLabel)
         contentView.addSubview(creatorNameLabel)
