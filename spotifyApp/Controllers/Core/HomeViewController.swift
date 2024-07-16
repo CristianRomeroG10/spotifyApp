@@ -322,14 +322,17 @@ extension HomeViewController: UICollectionViewDelegate{
         let section = sections[indexPath.section]
         switch section {
         case .featuredPlaylists:
-            break
+            let playlist = playlists[indexPath.row]
+            let playlistViewController = PlaylistViewController(playlist: playlist)
+            playlistViewController.title = playlist.name
+            playlistViewController.navigationItem.largeTitleDisplayMode = .never
+            navigationController?.pushViewController(playlistViewController, animated: true)
         case .newReleases:
             let album = newAlbums[indexPath.row]
             let albumViewController = AlbumViewController(album: album)
             albumViewController.title = album.name
             albumViewController.navigationItem.largeTitleDisplayMode = .never
             navigationController?.pushViewController(albumViewController, animated: true)
-            break
         case .recommendedTracks:
             break
         }
