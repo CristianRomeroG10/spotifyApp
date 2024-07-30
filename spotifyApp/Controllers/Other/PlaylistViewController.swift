@@ -8,7 +8,7 @@
 import UIKit
 
 class PlaylistViewController: UIViewController {
-
+    
     private let playlist: Playlist
     
     private let collectionView = UICollectionView(
@@ -18,17 +18,17 @@ class PlaylistViewController: UIViewController {
             let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
                 heightDimension: .fractionalHeight(1.0)
-                )
+            )
             )
             
-            item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
-
+            item.contentInsets = NSDirectionalEdgeInsets(top: 1, leading: 2, bottom: 1, trailing: 2)
+            
             let group = NSCollectionLayoutGroup.vertical(
                 layoutSize: NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1),
-                    heightDimension: .absolute(80)),
-                    subitem: item,
-                    count: 1
+                    heightDimension: .absolute(60)),
+                subitem: item,
+                count: 1
             )
             //Section
             let section = NSCollectionLayoutSection(group: group)
@@ -45,6 +45,8 @@ class PlaylistViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private var viewModels = [RecommendedTrackCellViewModel]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = playlist.name
@@ -56,12 +58,21 @@ class PlaylistViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        APICaller.shared.getPlayListDetails(for: playlist) { result in
-            switch result {
-            case .success(let model):
-                break
-            case .failure(let error):
-                break
+        APICaller.shared.getPlayListDetails(for: playlist) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let model):
+                    //RecommendedTrackCellViewModel
+                    self?.viewModels = model.tracks.items.compactMap({
+                        RecommendedTrackCellViewModel(
+                            name: $0.track.name,
+                            artistName: $0.track.artists.first?.name ?? "-",
+                            artworkURL: URL(string: $0.track.album?.images.first?.url ?? ""))
+                    })
+                    self?.collectionView.reloadData()
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
             }
         }
     }
@@ -74,14 +85,14 @@ class PlaylistViewController: UIViewController {
 
 extension PlaylistViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        30
+        viewModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommendedTrackCollectionViewCell.identifier, for: indexPath) as? RecommendedTrackCollectionViewCell else {
             return UICollectionViewCell()
         }
-//        cell.configure(with: viewModels[indexPath.row])
+        cell.configure(with: viewModels[indexPath.row])
         return cell
     }
 }
