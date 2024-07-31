@@ -88,6 +88,17 @@ class PlaylistViewController: UIViewController {
                 }
             }
         }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didTapShareButton))
+    }
+    
+    @objc
+    private func didTapShareButton(){
+        guard let url = URL(string: playlist.external_urls["spotify"] ?? "") else {return}
+        let vc = UIActivityViewController(
+            activityItems: ["Check out this cool playlist I found ", url],
+            applicationActivities: [])
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(vc, animated: true)
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -124,6 +135,7 @@ extension PlaylistViewController: UICollectionViewDataSource {
             description: playlist.description,
             artWorkURL: URL(string: playlist.images.first?.url ?? ""))
         header.configure(with: headerViewModel)
+        header.delegate = self
         return header
     }
 }
@@ -132,4 +144,13 @@ extension PlaylistViewController: UICollectionViewDelegate {
         collectionView.deselectItem(at: indexPath, animated: true)
         //Play Song
     }
+}
+
+extension PlaylistViewController: playlistHeaderCollectionReusableViewDelegate{
+    func playlistHeaderCollectionReusableViewDidTapPlayAllButton(_ header: PlaylistHeaderCollectionReusableView) {
+        //Start Playlist play in queue
+        print("PlayingAll")
+    }
+    
+    
 }

@@ -8,8 +8,14 @@
 import UIKit
 import SDWebImage
 
+protocol playlistHeaderCollectionReusableViewDelegate: AnyObject {
+    func playlistHeaderCollectionReusableViewDidTapPlayAllButton(_ header: PlaylistHeaderCollectionReusableView)
+}
+
 final class PlaylistHeaderCollectionReusableView: UICollectionReusableView {
     static let identifier = "PlaylistHeaderCollectionReusableView"
+    
+    weak var delegate: playlistHeaderCollectionReusableViewDelegate?
     
     private let nameLabel: UILabel = {
         let label = UILabel()
@@ -64,7 +70,7 @@ final class PlaylistHeaderCollectionReusableView: UICollectionReusableView {
     }
     @objc
     private func didTapPlayAllButton(){
-        
+        delegate?.playlistHeaderCollectionReusableViewDidTapPlayAllButton(self)
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
