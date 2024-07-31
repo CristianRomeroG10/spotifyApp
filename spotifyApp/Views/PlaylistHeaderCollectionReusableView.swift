@@ -39,6 +39,16 @@ final class PlaylistHeaderCollectionReusableView: UICollectionReusableView {
         return imageView
     }()
     
+    private let playAllButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .systemGreen
+        button.setImage(UIImage(systemName: "play.fill"), for: .normal)
+        button.tintColor = .white
+        button.layer.cornerRadius = 35
+        button.layer.masksToBounds = true
+        return button
+    }()
+    
     //MARK: Init
     
     override init(frame: CGRect) {
@@ -48,8 +58,13 @@ final class PlaylistHeaderCollectionReusableView: UICollectionReusableView {
         addSubview(nameLabel)
         addSubview(descriptionLabel)
         addSubview(ownerLabel)
+        addSubview(playAllButton)
+        playAllButton.addTarget(self, action: #selector(didTapPlayAllButton), for: .touchUpInside)
     }
-    
+    @objc
+    private func didTapPlayAllButton(){
+        
+    }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -61,6 +76,7 @@ final class PlaylistHeaderCollectionReusableView: UICollectionReusableView {
         nameLabel.frame = CGRect(x: 10, y: imageView.bottom, width: width-20, height: 44)
         descriptionLabel.frame = CGRect(x: 10, y: nameLabel.bottom, width: width-20, height: 44)
         ownerLabel.frame = CGRect(x: 10, y: descriptionLabel.bottom, width: width-20, height: 44)
+        playAllButton.frame = CGRect(x: width-100, y:height-100, width: 70, height: 70)
     }
     
     func configure(with viewModel: PlaylistHeaderViewModel ){
