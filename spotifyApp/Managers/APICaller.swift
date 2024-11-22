@@ -178,6 +178,53 @@ final class APICaller {
             task.resume()
         }
     }
+    
+    //MARK: -Category
+    
+    public func getCategories(completion: @escaping (Result<[Category], Error>) -> Void) {
+        createRequest(with: URL(string: Constants.baseAPIURL + "/browse/categories?limit=2"),
+                      type: .GET
+        ){ request in
+            let task = URLSession.shared.dataTask(with: request) { data, _, error in
+                guard let data = data, error == nil else {
+                    completion(.failure(APIError.failedToGetData))
+                    return
+                }
+                do{
+                    let result = try JSONDecoder().decode(AllCategoriesResponse.self, from: data)
+                    //JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    print(result.categories.items)
+                    completion(.success(result.categories.items))
+                }
+                catch{
+                    print(error.localizedDescription)
+                    completion(.failure(error))
+                }
+            }
+            task.resume()
+        }
+    }
+    public func getCategoryPlayList(completion: @escaping (Result<[Playlist], Error>) -> Void) {
+        createRequest(with: URL(string: Constants.baseAPIURL + "/browse/categories/\("id")/?limit=2"),
+                      type: .GET
+        ){ request in
+            let task = URLSession.shared.dataTask(with: request) { data, _, error in
+                guard let data = data, error == nil else {
+                    completion(.failure(APIError.failedToGetData))
+                    return
+                }
+                do{
+                    let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    print(json)
+                }
+                catch{
+                    completion(.failure(error))
+                }
+            }
+            task.resume()
+        }
+    }
+    
     // MARK: -Private
     
     enum HTTPMethod: String {
