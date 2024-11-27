@@ -182,7 +182,7 @@ final class APICaller {
     //MARK: -Category
     
     public func getCategories(completion: @escaping (Result<[Category], Error>) -> Void) {
-        createRequest(with: URL(string: Constants.baseAPIURL + "/browse/categories?limit=2"),
+        createRequest(with: URL(string: Constants.baseAPIURL + "/browse/categories?limit=50"),
                       type: .GET
         ){ request in
             let task = URLSession.shared.dataTask(with: request) { data, _, error in
@@ -193,7 +193,6 @@ final class APICaller {
                 do{
                     let result = try JSONDecoder().decode(AllCategoriesResponse.self, from: data)
                     //JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                    print(result.categories.items)
                     completion(.success(result.categories.items))
                 }
                 catch{
@@ -204,8 +203,8 @@ final class APICaller {
             task.resume()
         }
     }
-    public func getCategoryPlayList(completion: @escaping (Result<[Playlist], Error>) -> Void) {
-        createRequest(with: URL(string: Constants.baseAPIURL + "/browse/categories/\("id")/?limit=2"),
+    public func getCategoryPlayList(category: Category, completion: @escaping (Result<[Playlist], Error>) -> Void) {
+        createRequest(with: URL(string: Constants.baseAPIURL + "/browse/categories/\(category.id)/playlists?limit=50"),
                       type: .GET
         ){ request in
             let task = URLSession.shared.dataTask(with: request) { data, _, error in
@@ -214,8 +213,9 @@ final class APICaller {
                     return
                 }
                 do{
-                    let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                    print(json)
+                    let result = try JSONDecoder().decode(CategoryPlaylistsResponse.self, from: data)
+                    let playlist = result.playlists.items
+                    completion(.success(playlist))
                 }
                 catch{
                     completion(.failure(error))
